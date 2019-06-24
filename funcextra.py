@@ -35,6 +35,42 @@ def iter2(arr, index):
         yield iter1(arr)
 
 '''
+arr = [
+    ['dev01', 10],['dev01', 12], ['dev01', 13],
+    ['dev01', 21],['dev01', 22], ['dev01', 23],
+]
+
+def compare(prev, curr):
+    return True if prev[1] - curr[1]>2 else False
+
+for i in iter2reduce(iter(arr), compare):
+    for j in i:
+        print(j)
+
+'''
+def iter2reduce(arr, compare):
+    item = next(arr, None)
+    iter1_end = True
+
+    def iter1(arr):
+        nonlocal item
+        nonlocal iter1_end
+        try:
+            while True:
+                old_item = item
+                item = next(arr, None)
+                if item is None or compare(item,old_item):
+                    break
+                yield old_item,item
+        finally:
+            iter1_end = True
+            
+    while item is not None and iter1_end:
+        iter1_end = False
+        #logging.debug(item)
+        yield iter1(arr)
+
+'''
 Retry function/method
 '''
 def retry(howmany=2, raiseError=True):
