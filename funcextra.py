@@ -14,11 +14,11 @@ for i in iter2(iter(arr), 0):
 '''
 def iter2(arr, index):
     item = next(arr, None)
-    iter1_end = True
+    loop_end = True
 
-    def iter1(arr):
+    def loop(arr):
         nonlocal item
-        nonlocal iter1_end
+        nonlocal loop_end
         yield item
         old_item = item
         try:
@@ -28,11 +28,11 @@ def iter2(arr, index):
                     break
                 yield item
         finally:
-            iter1_end = True
+            loop_end = True
             
-    while item is not None and iter1_end:
-        iter1_end = False
-        yield iter1(arr)
+    while item is not None and loop_end:
+        loop_end = False
+        yield loop(arr)
 
 '''
 arr = [
@@ -50,11 +50,11 @@ for i in iter2reduce(iter(arr), compare):
 '''
 def iter2reduce(arr, compare):
     item = next(arr, None)
-    iter1_end = True
+    loop_end = True
 
-    def iter1(arr):
+    def loop(arr):
         nonlocal item
-        nonlocal iter1_end
+        nonlocal loop_end
         try:
             while True:
                 old_item = item
@@ -63,12 +63,12 @@ def iter2reduce(arr, compare):
                     break
                 yield old_item,item
         finally:
-            iter1_end = True
+            loop_end = True
             
-    while item is not None and iter1_end:
-        iter1_end = False
+    while item is not None and loop_end:
+        loop_end = False
         #logging.debug(item)
-        yield iter1(arr)
+        yield loop(arr)
 
 '''
 Retry function/method
