@@ -59,7 +59,7 @@ def iter2reduce(arr, compare=None, return_end=True):
             while True:
                 old_item = item
                 item = next(arr, None)
-                if item is None or (compare and compare(item,old_item)):
+                if item is None or (compare and compare(old_item, item)):
                     if item is None and return_end:
                         yield old_item, None
                     break
