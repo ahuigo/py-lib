@@ -48,27 +48,29 @@ for i in iter2reduce(iter(arr), compare):
         print(j)
 
 '''
-def iter2reduce(arr, compare):
+def iter2reduce(arr, compare=None, return_end=True):
     item = next(arr, None)
-    loop_end = True
+    iter1_end = True
 
-    def loop(arr):
+    def iter1(arr):
         nonlocal item
-        nonlocal loop_end
+        nonlocal iter1_end
         try:
             while True:
                 old_item = item
                 item = next(arr, None)
-                if item is None or compare(item,old_item):
+                if item is None or (compare and compare(item,old_item)):
+                    if item is None and return_end:
+                        yield old_item, None
                     break
                 yield old_item,item
         finally:
-            loop_end = True
+            iter1_end = True
             
-    while item is not None and loop_end:
-        loop_end = False
+    while item is not None and iter1_end:
+        iter1_end = False
         #logging.debug(item)
-        yield loop(arr)
+        yield iter1(arr)
 
 '''
 Retry function/method
