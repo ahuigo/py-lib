@@ -61,7 +61,7 @@ def iterChunk(arr, index=None, compare = None):
                 old_item = item
                 item = next(arr, None)
                 if item is None \
-                    or (index and item[index] != old_item[index]) \
+                    or (index is not None and item[index] != old_item[index]) \
                     or (compare and compare(old_item, item)):
                     break
         finally:
