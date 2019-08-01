@@ -42,7 +42,7 @@ with open('./b.png', 'rb') as f:
     # 添加到MIMEMultipart:
     msg.attach(mime)
 
-server = smtplib.SMTP(smtp_server, 25)
+server = smtplib.SMTP(smtp_server, 587) # 25
 server.starttls()
 server.set_debuglevel(1)
 server.login(from_addr, password)
