@@ -4,10 +4,13 @@ import psutil
 
 ttl=60
 
+print("mainid:",os.getpid())
+time.sleep(3)
 
 for i in range(10):
     pid = os.fork()
     if pid == 0:
+        os.system('sleep 10')
         print('查看zombie: ps aux | grep Z')
         print('child:',os.getpid())
         p = psutil.Process(os.getpid())
@@ -19,6 +22,7 @@ for i in range(10):
         print("exit mem:",mem)
         sys.exit(0)
 
-print("mainid:",os.getpid())
+
+
 time.sleep(ttl)
 os.wait() 
