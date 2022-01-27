@@ -5,7 +5,9 @@ LDAP_CONFIG = {
     "bind_dn":"CN=<department>,OU=Account,DC=ahuigo,DC=com",
     "bind_pass": "passwd!",
     "base_dn": "OU=All Users,DC=ahuigo,DC=com",
-    "search_user_filter": '(&(objectclass=person)(CN=%s))',
+    "search_user_filter":'(&(objectclass=person)(CN=%s))',
+    "search_user_filter":'(&(objectclass=person))', # alluser
+    "search_user_filter":'(&(objectClass=User)(objectCategory=Person))', # category
     # pgadmin:
     #   LDAP_SEARCH_FILETER='(objectclass=person)'
     #   LDAP_USERNAME_ATTRIBUTE='CN'
