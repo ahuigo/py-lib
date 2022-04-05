@@ -10,7 +10,7 @@ time.sleep(3)
 for i in range(10):
     pid = os.fork()
     if pid == 0:
-        os.system('sleep 10')
+        os.system('sleep 5')
         print('查看zombie: ps aux | grep Z')
         print('child:',os.getpid())
         p = psutil.Process(os.getpid())

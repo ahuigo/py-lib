@@ -1,3 +1,5 @@
 .DS_Store
 a.py
+*.pyc
+__pycache__
 
