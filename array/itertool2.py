@@ -2,6 +2,9 @@ from functools import wraps
 import traceback
 '''
 Retry function/method
+
+@retry(3,True)
+def get()
 '''
 def retry(howmany=2, raiseError=True):
     def tryIt(func):
@@ -23,29 +26,34 @@ def retry(howmany=2, raiseError=True):
 
 
 '''
-分组迭代
-arr = [
-        ['dev01', '1'], ['dev01', '2'], ['dev01', '3'],
-        ['dev02', '1'], ['dev02', '2'], ['dev02', '3'],
-        ['dev03', '1'], ['dev03', '2'], ['dev03', '3'],
-        ]
-for i in iterChunk(iter(arr), 0):
-    print(i)
-    for j in i:
-        print(j)
+分组迭代:
+example 1:
 
-arr = [
-    ['dev01', 10],['dev01', 12], ['dev01', 13],
-    ['dev01', 21],['dev01', 22], ['dev01', 23],
-]
+    arr = [
+            ['dev01', '1'], ['dev01', '2'], ['dev01', '3'],
+            ['dev02', '1'], ['dev02', '2'], ['dev02', '3'],
+            ['dev03', '1'], ['dev03', '2'], ['dev03', '3'],
+            ]
+    for i in iterChunk(iter(arr), 0):
+        print(i)
+        for j in i:
+            print(j)
 
-def compare(prev, curr):
-    return True if prev[1] - curr[1]>2 else False
 
-for i in iterChunk(iter(arr), compare):
-    print(i)
-    for j in i:
-        print(j)
+example 2:
+
+    arr = [
+        ['dev01', '10'],['dev01', '12'], ['dev01', '13'],
+        ['dev01', '21'],['dev01', '22'], ['dev01', '23'],
+    ]
+
+    def compare(prev, curr):
+        return curr[1][0]!=prev[1][0]
+
+    for i in iterChunk(iter(arr), compare=compare):
+        print(i)
+        for j in i:
+            print(j)
 
 '''
 def iterChunk(arr, index=None, compare = None):
@@ -70,6 +78,23 @@ def iterChunk(arr, index=None, compare = None):
     while item is not None and iter1_end:
         iter1_end = False
         yield iter1(arr)
+
+'''
+也可以用:
+    from itertools import groupby, count
+'''
+from itertools import groupby, count
+def chunks(iterable, size=10):
+    c = count()
+    for _, g in groupby(iterable, lambda _: next(c)//size):
+        yield g
+
+if True:
+    s = range(12)
+    for chunk in chunks(s,5):
+        print(chunk)
+        print(list(chunk))
+
 '''
 配对迭代
 '''
