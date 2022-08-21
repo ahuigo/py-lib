@@ -80,7 +80,15 @@ def iterChunk(arr, index=None, compare = None):
         yield iter1(arr)
 
 '''
-也可以用:
+chunk via step
+'''
+def chunks(lst, n):
+    """Yield successive n-sized chunks from lst."""
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
+'''
+也可以用: groupby
     from itertools import groupby, count
 '''
 from itertools import groupby, count

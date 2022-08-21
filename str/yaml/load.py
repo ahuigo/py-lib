@@ -2,6 +2,7 @@ s='''
 defaults: &ref_default
   adapter:  postgres
   host:     localhost
+  .works: work2
 
 development:
   database: myapp_development
@@ -44,7 +45,8 @@ data2: |-
 import yaml
 d=yaml.safe_load(s)
 import json
-d['iso8601']= d['iso8601'].__str__()
+print(type(d['iso8601']))
+d['iso8601']= d['iso8601'].strftime('%Y%m%d %H:%M:%S')
 print(json.dumps(d, indent=4,))
 print("str1:", d['str1'].encode())
 print("str2:", d['str2'].encode())
