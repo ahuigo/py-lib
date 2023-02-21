@@ -103,20 +103,3 @@ if True:
         print(chunk)
         print(list(chunk))
 
-'''
-配对迭代
-'''
-def iterReduce(arr, return_end=True):
-    item = next(arr, None)
-    if item is None:
-        return
-
-    while True:
-        old_item = item
-        item = next(arr, None)
-        if item is None:
-            if return_end:
-                yield old_item, None
-            break
-        yield old_item,item
-            
