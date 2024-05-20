@@ -1,0 +1,8 @@
+// file: encry_data.proto
+// 生成encry_data_pb2.py：protoc --python_out=. encry_data.proto
+syntax = "proto3";
+
+message EncryData {
+  bytes data = 1;
+  bytes sign = 2;
+}
