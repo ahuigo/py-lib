@@ -8,10 +8,7 @@ tests:
 
 ############### how to create a new project with poetry? ##########################
 # 1. create project package
+# 2. refer to ahuigo/xlparser
 create:
 	poetry new mypkg
-
-# 2. 生成poetry.lock + requirements.txt
-lock:
-	poetry export --output requirements.txt
 

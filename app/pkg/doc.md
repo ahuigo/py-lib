@@ -35,7 +35,4 @@
     python3 -m pytest -s
 
 ## import relation path
-run at root:
-
-
-run at /test:
+参考　py-pkg-import.md
