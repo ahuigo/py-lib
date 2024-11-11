@@ -6,8 +6,8 @@ def handler(signum, frame):
     sys.exit(1)
 
 print("pid:", os.getpid())
-signal.signal(signal.SIGTERM, handler)
-signal.signal(signal.SIGINT, handler)
+signal.signal(signal.SIGTERM, handler) # process.terminate() 
+signal.signal(signal.SIGINT, handler) # os.kill(pid, signal.SIGINT)
 signal.signal(signal.SIGQUIT, handler)
 
 signal.signal(signal.SIGCHLD, handler)
