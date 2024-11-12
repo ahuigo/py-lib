@@ -14,13 +14,13 @@ if __name__=="__main__":
     # read
     if sys.stdin.isatty:
         # read from tty(ctrl+D quit)
-        print("read tty:",sys.stdin.read())
-        print("read tty:",open(0).read())
+        print("read tty1:",sys.stdin.read())
+        print("read tty2:",open(0).read())
     else:
         #read from pipe
         print("read pipe:",sys.stdin.read())
     # write
-    out="out"
+    out="outlen:"
     print(sys.stdout.write(out))
 
 
