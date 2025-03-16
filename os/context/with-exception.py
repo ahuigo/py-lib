@@ -8,19 +8,17 @@ class CManager(object):
 
     def __exit__(self, exception, value, traceback):
         print('__exit__:', exception, "value:",value, "traceback:",traceback)
-        return True  # Suppress this exception
+        return False  # raise exception
 
     def __del__(self):
         print('__del__', self)
 
-def f():
-    with CManager() as c:
-        for j in range(3):
-            yield j
-        print( 'doing something with context:', c)
-        raise RuntimeError()
-        print ('finished doing something')
-    print("end")
+def divide(a:int, b:int):
+    with CManager() as ctx:
+        return a/b
 
-for i in f():
-    print(i)
+assert divide(10,5)==2
+try:
+    divide(1,0)
+except Exception as e:
+    assert isinstance(e, ZeroDivisionError)

@@ -10,3 +10,8 @@ def process_value(val: Union[str, float, int, bool]):
     # Your code here
     pass
 
+
+# List
+from typing import List,Self
+names: List[str] = []
+
